@@ -8,7 +8,7 @@ COPY package.json package-lock.json ./
 
 # Install using lock file
 # RUN npm ci
-RUN rm -f package-lock.json && npm install
+RUN npm ci
 
 # Copy the rest of source files
 COPY . .
