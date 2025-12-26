@@ -1,19 +1,42 @@
 # 3-Tier DevSecOps Project 
-This repository contains a simple Node.js API and a React client used for a user management demo application. 
-Run Locally to test application by following the steps below.
+This repository contains a Javascript application featuring a React.js client and Node.js API.     
+Test application by running it locally using the steps outlined below:  
 
 ## Local setup:  
-1. Install Node.js (version 18 or later is recommended) from https://nodejs.org/en/download
-2. Clone this repository:
-    
+1. Install Node.js from nodejs.org/en/download. Select version 22 LTS (or any version higher than 18) > Linux > using NVM.  
+   Copy & paste provided commands to install.  
+2. Clone this repository:    
    ```
    git clone https://github.com/Lily-G1/DevSecOps-Project.git  
    cd DevSecOps-Project/  
    git checkout dev
    ```
-3. Install MySQL and set up password and database (see setup)
-- open 2 more terminals & cd into frontend(client) and backend(api) directories respectively
-- update the value of REACT_APP_API  to your vm's ip address. this is found in /client/api/.env
-- in api terminal diretory, download dependencies > $ npm install
-- start backend: $ npm start  
+3. Install MySQL and set up password and database (see setup instructions in the MySQL_setup file)  
+4. Open 2 more terminals & navigate into the /client and /api directories respectively  
+5. Update the value of REACT_APP_API variable with machine's ip address. This is found in the ../client/.env file  
+6. In the /api terminal, download dependencies first, then start backend:
+   ```
+    npm install
+    npm start
+   ```
+   
+7. In /client terminal, download dependencies and start frontend:
+   ```
+   npm install
+   npm start
+   ```
+8. Access application on browser using ipaddress:3000  
+(swreenshot)
+     - Test login with default username: *'admin@example.com'* and default password: *'admin123'*  
+     - Test registration by entering new user details  
+     (insert screenshot)devopshack...
+ 9. Confirm data persistence in database:  
+    ```
+    sudo mysql -u root -p
+    
+    USE crud_app;
+    SHOW tables;
+    SELECT * FROM users;
+        
+  (insert screenshot of database) ubuntu....
  
