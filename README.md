@@ -3,7 +3,7 @@ This repository contains a Javascript application featuring a React.js frontend,
 The application will be deployed as a devsecops project but first, we test-run locally using the steps outlined below:  
 
 ## Local setup:  
-1. Install Node.js from nodejs.org/en/download. Select version 22 LTS (or any version higher than 18) > Linux > using NVM.  
+1. Install Node.js from [nodejs.org/en/download](nodejs.org/en/download). Select version 22 LTS (or any version higher than 18) > Linux > using NVM.  
    Copy & paste provided commands to install.  
 2. Clone this repository:    
    ```
