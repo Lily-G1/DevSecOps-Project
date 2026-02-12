@@ -16,11 +16,13 @@ The application will be deployed as a devsecops project but first, we test-run l
 5. Update the value of REACT_APP_API variable with machine's ip address. This is found in the /client/.env file  
 6. In the /api terminal, download dependencies first, then start backend:
    ```
+    rm -rf node_modules package-lock.json  (nuke dependencies)
     npm install
     npm start
    ```  
 7. In /client terminal, download dependencies and start frontend:
    ```
+   rm -rf node_modules package-lock.json
    npm install
    npm start
    ```
