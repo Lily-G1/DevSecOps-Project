@@ -12,17 +12,16 @@ The application will be deployed as a devsecops project but first, we test-run l
    git checkout dev
    ```
 3. Install MySQL and set up password and database (see setup instructions in the MySQL_setup file)  
-4. Open two seperate terminals & navigate into the /client and /api directories respectively  
-5. In the /api/.env file, update the value of the variable 'DB_PASSWORD' with your MySQL password   
-6. In the /api terminal, download dependencies first, then start backend:  
+4. Open two seperate terminals & navigate into the /client and /api directories respectively
+5. In the /client/.env file, update the value of REACT_APP_API with your machine's IP address  
+6. In the /api/.env file, update the value of DB_PASSWORD with your MySQL password   
+7. In the /api terminal, download dependencies & start backend:  
    ```
     rm -rf node_modules package-lock.json  (nuke dependencies)
     npm install
     npm start
    ```
-
-7. In the /client/.env file, update the value of REACT_APP_API with your machine's IP address  
-8. In the /client terminal, download dependencies and start frontend:
+8. In the /client terminal, download dependencies & start frontend:
    ```
    rm -rf node_modules package-lock.json
    npm install
