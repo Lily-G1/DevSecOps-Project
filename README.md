@@ -38,4 +38,10 @@ The application will be deployed as a devsecops project but first, we test-run l
     SHOW tables;
     SELECT * FROM users;
     ```
- 
+
+<!-- 
+SEND FILES/DIRECTORY TO EC2 FROM LOCAL:  
+$ scp -i "ann-web-server.pem" -r ~/Desktop/ds_ops/3-Tier-DevSecOps-Mega-Project/ ubuntu@ec2-98-89-19-38.compute-1.amazonaws.com:/home/ubuntu/3-Tier  
+-->
+
+
