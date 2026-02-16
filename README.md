@@ -41,9 +41,14 @@ The application will be deployed as a devsecops project but first, we test-run l
     SELECT * FROM users;
     ```
 
-<!-- 
+<!--  
+(type both commands in local terminal)
+
 SEND FILES/DIRECTORY TO EC2 FROM LOCAL:  
 $ scp -i "ann-web-server.pem" -r ~/Desktop/ds_ops/3-Tier-DevSecOps-Mega-Project/ ubuntu@ec2-98-89-19-38.compute-1.amazonaws.com:/home/ubuntu/3-Tier  
+
+SEND FILES/DIRECTORY FROM EC2 TO LOCAL:  
+$ scp -i "ann-web-server.pem" -r ubuntu@ec2-54-226-142-103.compute-1.amazonaws.com:/home/ubuntu/project-X ~/Desktop/project-X/  
 -->
 
 
