@@ -39,6 +39,9 @@ The application will be deployed as a devsecops project but first, we test-run l
     SHOW tables;
     SELECT * FROM users;
     ```
+<img width="616" height="309" alt="DevOps Shack Dashboard1" src="https://github.com/user-attachments/assets/568342aa-f14f-4826-8779-677f435bd160" />  
+<img width="610" height="287" alt="DevOps Shack Dashboard2" src="https://github.com/user-attachments/assets/c6fd4c8f-61d5-4f9f-81da-a9ea6bc0d389" />  
+<img width="1223" height="347" alt="ubuntu@ip-172-31-26-76_ ~_DevSecOps-Project_api 2_16_2026 11_55_46 AM" src="https://github.com/user-attachments/assets/c6a1ace5-1b65-45fd-81d4-3d7e93c0e819" />  
 
 <!--  
 (type both commands in local terminal)
