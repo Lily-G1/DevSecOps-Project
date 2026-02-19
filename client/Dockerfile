@@ -3,13 +3,11 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app 
 
-RUN npm install
-
 # Copy only dependency descriptors first to leverage Docker cache
 COPY package.json package-lock.json ./
 
 # Install using lock file
-# RUN npm ci
+RUN npm ci
 
 # Copy the rest of source files
 COPY . .
