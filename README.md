@@ -44,12 +44,10 @@ The application will be deployed as a devsecops project but first, we test-run l
 <img width="1223" height="347" alt="ubuntu@ip-172-31-26-76_ ~_DevSecOps-Project_api 2_16_2026 11_55_46 AM" src="https://github.com/user-attachments/assets/c6a1ace5-1b65-45fd-81d4-3d7e93c0e819" />  
 
 <!--  
-(type both commands in local terminal)
-
-SEND FILES/DIRECTORY TO EC2 FROM LOCAL:  
+SEND FILES/DIRECTORY TO EC2 FROM LOCAL: (type in local terminal)  
 $ scp -i "ann-web-server.pem" -r ~/Desktop/ds_ops/3-Tier-DevSecOps-Mega-Project/ ubuntu@ec2-98-89-19-38.compute-1.amazonaws.com:/home/ubuntu/3-Tier  
 
-SEND FILES/DIRECTORY FROM EC2 TO LOCAL:  
+SEND FILES/DIRECTORY TO LOCAL FROM EC2: (type in local terminal)   
 $ scp -i "ann-web-server.pem" -r ubuntu@ec2-54-226-142-103.compute-1.amazonaws.com:/home/ubuntu/project-X ~/Desktop/project-X/  
 -->
 
