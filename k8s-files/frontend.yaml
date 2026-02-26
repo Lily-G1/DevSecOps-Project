@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: adijaiswal/frontend:latest
+          image: liliangaladima/frontend:latest
           ports:
             - containerPort: 80
 ---
@@ -31,3 +31,4 @@ spec:
     - port: 80
       targetPort: 80
   type: LoadBalancer
+
