@@ -5,7 +5,7 @@ metadata:
   labels:
     app: backend
 stringData:
-  DB_PASSWORD: Aditya
+  DB_PASSWORD: Lilian
   JWT_SECRET: devopsShackSuperSecretKey
 ---
 apiVersion: v1
@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: adijaiswal/backend:latest
+          image: liliangaladima/backend:latest
           ports:
             - containerPort: 5000
           env:
@@ -82,3 +82,4 @@ spec:
   ports:
     - port: 5000
       targetPort: 5000
+
