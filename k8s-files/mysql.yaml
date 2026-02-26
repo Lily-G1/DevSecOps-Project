@@ -6,7 +6,7 @@ metadata:
   labels:
     app: mysql
 stringData:
-  MYSQL_ROOT_PASSWORD: Aditya
+  MYSQL_ROOT_PASSWORD: Lilian
 
 ---
 apiVersion: v1
@@ -128,3 +128,4 @@ spec:
   ports:
     - port: 3306
       targetPort: 3306
+
