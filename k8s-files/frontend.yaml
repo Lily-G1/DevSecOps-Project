@@ -45,7 +45,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: liliangaladima/frontend:2.0
+          image: liliangaladima/frontend:3.0
           ports:
             - containerPort: 80
           volumeMounts:
@@ -69,6 +69,7 @@ spec:
     - port: 80
       targetPort: 80
   type: LoadBalancer
+
 
 
 
