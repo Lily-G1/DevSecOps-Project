@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: liliangaladima/backend:2.0
+          image: liliangaladima/backend:3.0
           ports:
             - containerPort: 5000
           env:
@@ -82,5 +82,6 @@ spec:
   ports:
     - port: 5000
       targetPort: 5000
+
 
 
