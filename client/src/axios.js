@@ -1,18 +1,11 @@
 // src/axios.js
 import axios from 'axios';
 
-//// Dynamically determine API base URL
-//const API_BASE_URL =
-  //process.env.REACT_APP_API ||
-  //(window.location.hostname === 'localhost'
-    //? 'http://localhost:5000'
-    //: `http://${window.location.hostname}:5000`);
+// Use environment variable if set, otherwise use relative paths
+const API_BASE_URL = process.env.REACT_APP_API || '';
 
-//const instance = axios.create({
-  //baseURL: API_BASE_URL,
-//});
 const instance = axios.create({
-  baseURL: '/api', // Proxy from frontend NGINX to backend K8s service
+  baseURL: API_BASE_URL,
 });
 
 instance.interceptors.request.use((config) => {
@@ -22,4 +15,3 @@ instance.interceptors.request.use((config) => {
 });
 
 export default instance;
-
