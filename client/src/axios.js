@@ -1,7 +1,6 @@
 // src/axios.js
 import axios from 'axios';
 
-// Use environment variable if set, otherwise use relative paths
 const API_BASE_URL = '';
 
 const instance = axios.create({
