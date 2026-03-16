@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 // Use environment variable if set, otherwise use relative paths
-const API_BASE_URL = process.env.REACT_APP_API || '';
+const API_BASE_URL = '';
 
 const instance = axios.create({
   baseURL: API_BASE_URL,
