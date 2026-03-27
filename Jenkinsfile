@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'dev', url: 'https://github.com/Lily-G1/DevSecOps-Project.git'
+                git branch: 'dev-k8-deploy', url: 'https://github.com/Lily-G1/DevSecOps-Project.git'
             }
         }
         
@@ -64,9 +64,9 @@ pipeline {
                 script {
                     withDockerRegistry(credentialsId: 'dockerhub-cred') {
                         dir('api') {
-                            sh 'docker build -t liliangaladima/backend:latest .'
-                            sh 'trivy image --format table -o backend-image-report.html liliangaladima/backend:latest '
-                            sh 'docker push liliangaladima/backend:latest'
+                            sh 'docker build -t liliangaladima/backend:4.0 .'
+                            sh 'trivy image --format table -o backend-image-report.html liliangaladima/backend:4.0'
+                            sh 'docker push liliangaladima/backend:4.0'
                            
                         }
                     }
@@ -79,21 +79,41 @@ pipeline {
                 script {
                     withDockerRegistry(credentialsId: 'dockerhub-cred') {
                         dir('client') {
-                            sh 'docker build -t liliangaladima/frontend:latest .'
-                            sh 'trivy image --format table -o frontend-image-report.html liliangaladima/frontend:latest '
-                            sh 'docker push liliangaladima/frontend:latest'
+                            sh 'docker build -t liliangaladima/frontend:4.0 .'
+                            sh 'trivy image --format table -o frontend-image-report.html liliangaladima/frontend:4.0'
+                            sh 'docker push liliangaladima/frontend:4.0'
                         }
                     }
                 }
             }
         }  
         
-        stage('Deploy with Docker Compose') {
+       stage('K8-deploy') {
             steps {
                 script {
-                    sh 'docker-compose up -d'
-                } 
+                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token', namespace: 'dev', restrictKubeConfigAccess: false, serverUrl: 'https://5DAF62FDEA2350DA50B2E89866BA79FB.gr7.us-east-1.eks.amazonaws.com') {
+                            sh 'kubectl apply -f k8s-files/sc.yaml -n dev'
+                            sh 'kubectl apply -f k8s-files/mysql.yaml -n dev'
+                            sh 'kubectl apply -f k8s-files/backend.yaml -n dev'
+                            sh 'kubectl apply -f k8s-files/frontend.yaml -n dev'
+                            sh 'kubectl apply -f k8s-files/ingress.yaml'
+                            sleep 30
+                    }
+                }
             }
-        } 
+        }
+        
+        stage('verify-K8-deploy') {
+            steps {
+                script {
+                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token', namespace: 'dev', restrictKubeConfigAccess: false, serverUrl: 'https://5DAF62FDEA2350DA50B2E89866BA79FB.gr7.us-east-1.eks.amazonaws.com') {
+                            sh 'kubectl get pods -n dev'
+                            sh 'kubectl get svc -n dev'
+                            sh 'kubectl get ingress -n dev'
+                            
+                    }
+                }
+            }
+        }
     }
 }
