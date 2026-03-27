@@ -18,8 +18,8 @@ spec:
           image: liliangaladima/frontend:4.0
           imagePullPolicy: Always
           env:
-          - name: REACT_APP_API  # deepseek
-            value: ""  # Relative path! deepseek
+          - name: REACT_APP_API  
+            value: ""  # Relative path
           resources:
             limits:
               memory: "64Mi"
