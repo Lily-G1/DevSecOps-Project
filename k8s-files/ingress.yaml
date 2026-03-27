@@ -7,7 +7,7 @@ metadata:
     #nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/ssl-redirect: "false"  # For testing without HTTPS
 spec:
-  ingressClassName: nginx  # ← ADD THIS FOR DIGITAL OCEAN
+  ingressClassName: nginx 
   rules:
   - http:
       paths:
