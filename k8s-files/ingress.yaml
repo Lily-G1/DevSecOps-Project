@@ -8,23 +8,23 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/use-regex: "true"
+    #nginx.ingress.kubernetes.io/rewrite-target: /$2
+    #nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   ingressClassName: nginx
   rules:
     - host: liliangaladima.online
       http:
         paths:
-          - path: /api(/|$)(.*)
-            pathType: ImplementationSpecific
+          - path: /api  #(/|$)(.*)
+            pathType: Prefix  #ImplementationSpecific
             backend:
               service:
                 name: backend
                 port:
                   number: 5000
-          - path: /(.*)
-            pathType: ImplementationSpecific
+          - path: /  #(.*)
+            pathType: Prefix  #ImplementationSpecific
             backend:
               service:
                 name: frontend
@@ -33,22 +33,22 @@ spec:
     - host: www.liliangaladima.online
       http:
         paths:
-          - path: /api(/|$)(.*)
-            pathType: ImplementationSpecific
+          - path: /api   #(/|$)(.*)
+            pathType: Prefix  #ImplementationSpecific
             backend:
               service:
                 name: backend
                 port:
                   number: 5000
-          - path: /(.*)
-            pathType: ImplementationSpecific
+          - path: /  #(.*)
+            pathType: Prefix  #ImplementationSpecific
             backend:
               service:
                 name: frontend
                 port:
                   number: 80
- # tls:
- #   - hosts:
- #       - liliangaladima.online
- #       - www.liliangaladima.online
- #     secretName: liliangaladima-co-tls
+  tls:
+    - hosts:
+        - liliangaladima.online
+        - www.liliangaladima.online
+      secretName: liliangaladima-co-tls
