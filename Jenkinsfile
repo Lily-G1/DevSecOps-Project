@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'dev-k8-deploy', url: 'https://github.com/Lily-G1/DevSecOps-Project.git'
+                git branch: 'main', url: 'https://github.com/Lily-G1/DevSecOps-Project.git'
             }
         }
         
@@ -91,11 +91,11 @@ pipeline {
        stage('K8-deploy') {
             steps {
                 script {
-                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token', namespace: 'dev', restrictKubeConfigAccess: false, serverUrl: 'https://5DAF62FDEA2350DA50B2E89866BA79FB.gr7.us-east-1.eks.amazonaws.com') {
-                            sh 'kubectl apply -f k8s-files/sc.yaml -n dev'
-                            sh 'kubectl apply -f k8s-files/mysql.yaml -n dev'
-                            sh 'kubectl apply -f k8s-files/backend.yaml -n dev'
-                            sh 'kubectl apply -f k8s-files/frontend.yaml -n dev'
+                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token', namespace: 'prod', restrictKubeConfigAccess: false, serverUrl: 'https://5DAF62FDEA2350DA50B2E89866BA79FB.gr7.us-east-1.eks.amazonaws.com') {
+                            sh 'kubectl apply -f k8s-files/sc.yaml -n prod'
+                            sh 'kubectl apply -f k8s-files/mysql.yaml -n prod'
+                            sh 'kubectl apply -f k8s-files/backend.yaml -n prod'
+                            sh 'kubectl apply -f k8s-files/frontend.yaml -n prod'
                             sh 'kubectl apply -f k8s-files/ingress.yaml'
                             sleep 30
                     }
@@ -106,10 +106,10 @@ pipeline {
         stage('verify-K8-deploy') {
             steps {
                 script {
-                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token', namespace: 'dev', restrictKubeConfigAccess: false, serverUrl: 'https://5DAF62FDEA2350DA50B2E89866BA79FB.gr7.us-east-1.eks.amazonaws.com') {
-                            sh 'kubectl get pods -n dev'
-                            sh 'kubectl get svc -n dev'
-                            sh 'kubectl get ingress -n dev'
+                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token', namespace: 'prod', restrictKubeConfigAccess: false, serverUrl: 'https://5DAF62FDEA2350DA50B2E89866BA79FB.gr7.us-east-1.eks.amazonaws.com') {
+                            sh 'kubectl get pods -n prod'
+                            sh 'kubectl get svc -n prod'
+                            sh 'kubectl get ingress -n prod'
                             
                     }
                 }
