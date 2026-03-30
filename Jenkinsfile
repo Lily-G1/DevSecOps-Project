@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
     
@@ -87,15 +86,25 @@ pipeline {
                 }
             }
         }  
+
+        stage('Manual Approval for Production') {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    input message: 'Approve deployment to PRODUCTION?', ok: 'Deploy'
+                }
+            }
+        }
         
-       stage('K8-deploy') {
+        stage('Deploy to PROD') {
             steps {
                 script {
                     withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token', namespace: 'prod', restrictKubeConfigAccess: false, serverUrl: 'https://5DAF62FDEA2350DA50B2E89866BA79FB.gr7.us-east-1.eks.amazonaws.com') {
-                            sh 'kubectl apply -f k8s-files/sc.yaml -n prod'
+                            sh 'kubectl apply -f k8s-files/sc.yaml'
+                            sleep 20
                             sh 'kubectl apply -f k8s-files/mysql.yaml -n prod'
                             sh 'kubectl apply -f k8s-files/backend.yaml -n prod'
                             sh 'kubectl apply -f k8s-files/frontend.yaml -n prod'
+                            sh 'kubectl apply -f k8s-files/ci.yaml'
                             sh 'kubectl apply -f k8s-files/ingress.yaml'
                             sleep 30
                     }
@@ -103,12 +112,12 @@ pipeline {
             }
         }
         
-        stage('verify-K8-deploy') {
+        stage('Verify deployment to PROD') {
             steps {
                 script {
                     withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token', namespace: 'prod', restrictKubeConfigAccess: false, serverUrl: 'https://5DAF62FDEA2350DA50B2E89866BA79FB.gr7.us-east-1.eks.amazonaws.com') {
                             sh 'kubectl get pods -n prod'
-                            sh 'kubectl get svc -n prod'
+                            sleep 20
                             sh 'kubectl get ingress -n prod'
                             
                     }
