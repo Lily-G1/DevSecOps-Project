@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: backend-secret
-  namespace: dev
+  namespace: prod
   labels:
     app: backend
 stringData:
@@ -14,7 +14,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: backend-config
-  namespace: dev
+  namespace: prod
   labels:
     app: backend
 data:
@@ -28,7 +28,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
-  namespace: dev
+  namespace: prod
 spec:
   replicas: 1
   selector:
@@ -85,7 +85,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: backend
-  namespace: dev
+  namespace: prod
 spec:
   type: ClusterIP
   selector:
