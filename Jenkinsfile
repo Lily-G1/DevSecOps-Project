@@ -1,13 +1,18 @@
 pipeline {
     agent any
     
+    triggers {
+        githubPush()
+    }
+    
     tools {
         nodejs 'nodejs23'
     }
-
+    
     environment {
         SCANNER_HOME = tool 'sonar-scanner'
     }
+
     stages {
         stage('Git Checkout') {
             steps {
@@ -46,12 +51,14 @@ pipeline {
                 }
             }
         }
+        
         stage('Quality Gate Check') {
             steps {
                 timeout(time: 2, unit: 'MINUTES') {
                 }
             }
         }
+        
         stage('Trivy FS Scan') {
             steps {
                 sh 'trivy fs --format table -o fs-report.html .'
@@ -63,9 +70,9 @@ pipeline {
                 script {
                     withDockerRegistry(credentialsId: 'dockerhub-cred') {
                         dir('api') {
-                            sh 'docker build -t liliangaladima/backend:4.0 .'
-                            sh 'trivy image --format table -o backend-image-report.html liliangaladima/backend:4.0'
-                            sh 'docker push liliangaladima/backend:4.0'
+                            sh 'docker build -t liliangaladima/backend:5.0 .'
+                            sh 'trivy image --format table -o backend-image-report.html liliangaladima/backend:5.0'
+                            sh 'docker push liliangaladima/backend:5.0'
                            
                         }
                     }
@@ -78,9 +85,9 @@ pipeline {
                 script {
                     withDockerRegistry(credentialsId: 'dockerhub-cred') {
                         dir('client') {
-                            sh 'docker build -t liliangaladima/frontend:4.0 .'
-                            sh 'trivy image --format table -o frontend-image-report.html liliangaladima/frontend:4.0'
-                            sh 'docker push liliangaladima/frontend:4.0'
+                            sh 'docker build -t liliangaladima/frontend:5.0 .'
+                            sh 'trivy image --format table -o frontend-image-report.html liliangaladima/frontend:5.0'
+                            sh 'docker push liliangaladima/frontend:5.0'
                         }
                     }
                 }
@@ -98,7 +105,7 @@ pipeline {
         stage('Deploy to PROD') {
             steps {
                 script {
-                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token', namespace: 'prod', restrictKubeConfigAccess: false, serverUrl: 'https://5DAF62FDEA2350DA50B2E89866BA79FB.gr7.us-east-1.eks.amazonaws.com') {
+                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token', namespace: 'prod', restrictKubeConfigAccess: false, serverUrl: 'https://AD4D1158D82F1B3C740BC069FF3390AB.gr7.us-east-1.eks.amazonaws.com') {
                             sh 'kubectl apply -f k8s-files/sc.yaml'
                             sleep 20
                             sh 'kubectl apply -f k8s-files/mysql.yaml -n prod'
@@ -115,7 +122,7 @@ pipeline {
         stage('Verify deployment to PROD') {
             steps {
                 script {
-                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token', namespace: 'prod', restrictKubeConfigAccess: false, serverUrl: 'https://5DAF62FDEA2350DA50B2E89866BA79FB.gr7.us-east-1.eks.amazonaws.com') {
+                    withKubeConfig(caCertificate: '', clusterName: 'devopsshack-cluster', contextName: '', credentialsId: 'k8-token', namespace: 'prod', restrictKubeConfigAccess: false, serverUrl: 'https://AD4D1158D82F1B3C740BC069FF3390AB.gr7.us-east-1.eks.amazonaws.com') {
                             sh 'kubectl get pods -n prod'
                             sleep 20
                             sh 'kubectl get ingress -n prod'
