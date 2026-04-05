@@ -17,14 +17,14 @@ spec:
       http:
         paths:
           - path: /api  #(/|$)(.*)
-            pathType: Prefix  #ImplementationSpecific
+            pathType: Prefix  
             backend:
               service:
                 name: backend
                 port:
                   number: 5000
           - path: /  #(.*)
-            pathType: Prefix  #ImplementationSpecific
+            pathType: Prefix  
             backend:
               service:
                 name: frontend
@@ -33,15 +33,15 @@ spec:
     - host: www.liliangaladima.online
       http:
         paths:
-          - path: /api   #(/|$)(.*)
-            pathType: Prefix  #ImplementationSpecific
+          - path: /api   
+            pathType: Prefix  
             backend:
               service:
                 name: backend
                 port:
                   number: 5000
-          - path: /  #(.*)
-            pathType: Prefix  #ImplementationSpecific
+          - path: /  
+            pathType: Prefix  
             backend:
               service:
                 name: frontend
