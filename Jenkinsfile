@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'dev', url: 'https://github.com/Lily-G1/DevSecOps-Project.git'
+                git branch: 'dev-dockerDeploy', url: 'https://github.com/Lily-G1/DevSecOps-Project.git'
             }
         }
         
