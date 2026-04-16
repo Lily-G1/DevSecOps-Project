@@ -50,8 +50,11 @@ $ scp -i "ann-web-server.pem" -r ~/Desktop/ds_ops/3-Tier-DevSecOps-Mega-Project/
 SEND FILES/DIRECTORY TO LOCAL FROM EC2: (type in local terminal)   
 $ scp -i "ann-web-server.pem" -r ubuntu@ec2-54-226-142-103.compute-1.amazonaws.com:/home/ubuntu/project-X ~/Desktop/project-X/  
 
-SEND FROM LOCAL TO DIGITAL OCEAN:
+SEND FROM LOCAL TO DIGITAL OCEAN: (type in local terminal)
 $ scp -r linux-server/site.yml root@178.128.43.135:~/linux-server-project/playbooks/site.yml
+
+SEND FROM DIGITAL OCEAN DROPLET TO LOCAL: (type in local terminal too!)
+scp -r root@178.128.43.135:~/linux-server-project/ ~/Desktop/linux-server-project/
 -->
 
 
