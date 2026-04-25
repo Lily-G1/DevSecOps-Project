@@ -64,9 +64,9 @@ pipeline {
                 script {
                     withDockerRegistry(credentialsId: 'dockerhub-cred') {
                         dir('api') {
-                            sh 'docker build -t liliangaladima/backend:4.0 .'
-                            sh 'trivy image --format table -o backend-image-report.html liliangaladima/backend:4.0'
-                            sh 'docker push liliangaladima/backend:4.0'
+                            sh 'docker build -t liliangaladima/backend:2.0 .'
+                            sh 'trivy image --format table -o backend-image-report.html liliangaladima/backend:2.0'
+                            sh 'docker push liliangaladima/backend:2.0'
                            
                         }
                     }
@@ -79,9 +79,9 @@ pipeline {
                 script {
                     withDockerRegistry(credentialsId: 'dockerhub-cred') {
                         dir('client') {
-                            sh 'docker build -t liliangaladima/frontend:4.0 .'
-                            sh 'trivy image --format table -o frontend-image-report.html liliangaladima/frontend:4.0'
-                            sh 'docker push liliangaladima/frontend:4.0'
+                            sh 'docker build -t liliangaladima/frontend:2.0 .'
+                            sh 'trivy image --format table -o frontend-image-report.html liliangaladima/frontend:2.0'
+                            sh 'docker push liliangaladima/frontend:2.0'
                         }
                     }
                 }
