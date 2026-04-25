@@ -21,5 +21,7 @@ Clone this repository using the steps below and follow this comprehensive step-b
    rm -rf node_modules package-lock.json
    npm install
    ```
-7. Push to your repository and run Jenkins pipeline to deploy with EKS. See detailed [instructions here.](https://medium.com/@liliangaladima_/devsecops-project-deployment-a-jenkins-sonarqube-pipeline-f1654d9ee379?postPublishedType=repub)
+7. Push to your repository and follow these detailed [instructions here](https://medium.com/@liliangaladima_/devsecops-project-deployment-a-jenkins-sonarqube-pipeline-f1654d9ee379?postPublishedType=repub) to set up the required infrastructure for deployment. We will be deploying with kubernetes rather than docker-compose in this environment, so take the following additional steps to set up an EKS cluster and configure the pipeline for kubernetes.
+   - Set up AWS EKS Cluster:
+     Run this [bash script](). It contains instructions on how to easily automate the creation of a cluster suitable for running this application.  
 
