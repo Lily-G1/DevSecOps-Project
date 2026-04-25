@@ -36,7 +36,7 @@ resource "aws_instance" "sonarqube_server" {
   associate_public_ip_address = true
   vpc_security_group_ids = [aws_security_group.app_sg.id]
   subnet_id              = data.aws_subnets.default.ids[0]
-  key_name               = "ann-web-server"
+  key_name               = var.ssh_key_pair
   root_block_device {
     volume_size = 25 
     volume_type = "gp3"
