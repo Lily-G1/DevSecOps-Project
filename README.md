@@ -23,5 +23,5 @@ Clone this repository using the steps below and follow this comprehensive step-b
    ```
 7. Push to your repository and follow these detailed [instructions here](https://medium.com/@liliangaladima_/devsecops-project-deployment-a-jenkins-sonarqube-pipeline-f1654d9ee379?postPublishedType=repub) to set up the required infrastructure for deployment. We will be deploying with kubernetes rather than docker-compose in this environment, so take the following additional steps to set up an EKS cluster and configure the pipeline for kubernetes.
    - Set up AWS EKS Cluster:
-     Run this [bash script](). It contains instructions on how to easily automate the creation of a cluster suitable for running this application.  
+     Run this [bash script](https://github.com/Lily-G1/eks-setup). It contains instructions on how to easily automate the creation of an EKS cluster suitable for running this application.  
 
