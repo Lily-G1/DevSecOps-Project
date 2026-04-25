@@ -1,4 +1,4 @@
-# 3-Tier DevSecOps Project  
+# 3-Tier DevSecOps Capstone Project  
 ## Docker Compose Deployment with Jenkins  
 This repository contains a full-stack application featuring a React.js frontend, a Node.js API and MySQL database. This particular branch contains all the files required to build its docker images and run the entire application with docker-compose within a Jenkins CI/CD pipeline with security operations which include Sonarqube, Gitleaks & Trivy scans.    
 Clone this repository using the steps below and follow this comprehensive step-by-step tutorial provided [HERE](https://medium.com/@liliangaladima_/devsecops-project-deployment-a-jenkins-sonarqube-pipeline-f1654d9ee379?postPublishedType=repub) to recreate this deployment.  
