@@ -4,6 +4,6 @@ terraform {
     bucket = "devsecops-infra-state-files"
     region = "us-east-1"
     key = "devsecops-infra/terraform.tfstate"
-    shared_credentials_file = "~/.aws/credentials3"
+    shared_credentials_file = var.aws_credentials_path
   }
 }
