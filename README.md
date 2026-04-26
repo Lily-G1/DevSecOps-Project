@@ -39,7 +39,7 @@ Clone this repository using the steps below and follow this comprehensive step-b
        - role_binding and paste into rb.yaml (change namespace to 'dev')  
        - cluster_role and paste into cr.yaml (change namespace to 'dev')  
        - cluster_role_binding and paste into crb.yaml (change namespace to 'dev')
-       - Click on 'create token' from same [file](https://github.com/Lily-G1/DevSecOps-Project/blob/dev-k8-deploy/RBAC/rbac.md) & copy content of '.../mysecretname.yaml'. Paste into secret.yaml and change value of 'kubernetes.io/service-account.name: myserviceaccount' to 'jenkins'. Save.
+       - Click on 'create token' from same [file](https://github.com/Lily-G1/DevSecOps-Project/blob/dev-k8-deploy/RBAC/rbac.md) & copy content of 'secret/serviceaccount/mysecretname.yaml'. Paste into secret.yaml and change value of 'kubernetes.io/service-account.name: myserviceaccount' to 'jenkins'. Save.
        - ```bash
          kubectl apply -f sa.yaml role.yaml rb.yaml cr.yaml crb.yaml
          kubectl apply -f secret.yaml -n dev
