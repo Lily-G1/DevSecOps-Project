@@ -47,5 +47,7 @@ Clone this repository using the steps below and follow this comprehensive step-b
          ```
        - Copy secret token above. Go jenkins console -> credentials -> global -> add -> secret text -> paste token -> ID + descr = 'k8-token'. Create.  
        - Go to AWS console -> EKS cluster to copy cluster's ARN/url. Go to 'deploy-to-PROD' and 'verify-deployment-to-PROD' stages and update the value of 'serverURL' with this url.
-      - Build your pipeline. The application will be accessible via the created loadbalancer’s IP and domain name.  
+      - Update the ingress.yaml file with your active domain name.  
+      - Build your pipeline. The application will be accessible via the created loadbalancer’s IP.  
+      - DNS must be configured in your domain registrar pointing the A-record to the loadbalancer’s external IP. After propagation, the application will be available on your domain    
 
