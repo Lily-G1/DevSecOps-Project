@@ -46,6 +46,6 @@ Clone this repository using the steps below and follow this comprehensive step-b
          kubectl describe secret mysecretname -n dev  (to display secret token)
          ```
        - Copy secret token above. Go jenkins console -> credentials -> global -> add -> secret text -> paste token -> ID + descr = 'k8-token'. Create.  
-       - Go to AWS console -> EKS cluster to copy cluster's ARN/url. Go to 'k8-deploy' and 'verify-K8-deploy' stages and update the value of 'serverURL' with this url.
-      - Build your pipeline. The application will be accessible via the created loadbalancer’s IP.  
+       - Go to AWS console -> EKS cluster to copy cluster's ARN/url. Go to 'deploy-to-PROD' and 'verify-deployment-to-PROD' stages and update the value of 'serverURL' with this url.
+      - Build your pipeline. The application will be accessible via the created loadbalancer’s IP and domain name.  
 
