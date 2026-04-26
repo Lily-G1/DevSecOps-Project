@@ -1,5 +1,5 @@
 # 3-Tier DevSecOps Capstone Project  
-## Kubernetes Deployment with AWS EKS  
+## Production Deployment    
 This repository contains a full-stack application featuring a React.js frontend, a Node.js API and MySQL database. This particular branch contains all files required to build the app's docker images, set up an AWS EKS cluster and run the entire application in this cluster. The deployment is done within a Jenkins CI/CD pipeline with security operations which include Sonarqube, Gitleaks & Trivy scans.    
 Clone this repository using the steps below and follow this comprehensive step-by-step tutorial provided [HERE](https://medium.com/@liliangaladima_/devsecops-project-deployment-a-jenkins-sonarqube-pipeline-f1654d9ee379?postPublishedType=repub) to recreate this deployment.  
 
@@ -46,6 +46,6 @@ Clone this repository using the steps below and follow this comprehensive step-b
          kubectl describe secret mysecretname -n dev  (to display secret token)
          ```
        - Copy secret token above. Go jenkins console -> credentials -> global -> add -> secret text -> paste token -> ID + descr = 'k8-token'. Create.  
-       - Go to AWS console -> EKS cluster to copy cluster's ARN/url. Go to 'k8-deploy' snd 'verify-K8-deploy' stages and update the value of 'serverURL' with this url.
+       - Go to AWS console -> EKS cluster to copy cluster's ARN/url. Go to 'k8-deploy' and 'verify-K8-deploy' stages and update the value of 'serverURL' with this url.
       - Build your pipeline. The application will be accessible via the created loadbalancer’s IP.  
 
