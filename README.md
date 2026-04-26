@@ -1,5 +1,5 @@
 # 3-Tier DevSecOps Capstone Project  
-## Docker Compose Deployment with Jenkins  
+## Kubernetes Deployment with AWS EKS  
 This repository contains a full-stack application featuring a React.js frontend, a Node.js API and MySQL database. This particular branch contains all files required to build the app's docker images, set up an AWS EKS cluster and run the entire application in this cluster. The deployment is done within a Jenkins CI/CD pipeline with security operations which include Sonarqube, Gitleaks & Trivy scans.    
 Clone this repository using the steps below and follow this comprehensive step-by-step tutorial provided [HERE](https://medium.com/@liliangaladima_/devsecops-project-deployment-a-jenkins-sonarqube-pipeline-f1654d9ee379?postPublishedType=repub) to recreate this deployment.  
 
@@ -21,7 +21,16 @@ Clone this repository using the steps below and follow this comprehensive step-b
    rm -rf node_modules package-lock.json
    npm install
    ```
-7. Push to your repository and follow these detailed [instructions here](https://medium.com/@liliangaladima_/devsecops-project-deployment-a-jenkins-sonarqube-pipeline-f1654d9ee379?postPublishedType=repub) to set up the required infrastructure for deployment. We will be deploying with kubernetes rather than docker-compose in this environment, so take the following additional steps to set up an EKS cluster and configure the pipeline for kubernetes.
-   - Set up AWS EKS Cluster:
-     Run this [bash script](https://github.com/Lily-G1/eks-setup). It contains instructions on how to easily automate the creation of an EKS cluster suitable for running this application.  
+7. set up the required Jenkins & Sonarqube infrastructure:
+   - Follow these detailed [instructions](https://medium.com/@liliangaladima_/devsecops-project-deployment-a-jenkins-sonarqube-pipeline-f1654d9ee379?postPublishedType=repub) to set up the required  for deployment. We will be deploying with kubernetes rather than docker-compose in this environment.  
+   - Jenkins plugins to install: Stageview, sonarqube scanner,  nodejs, docker pipeline, kubernetes, kubernetes credentials, kubernetes CLI  
+   - Set up AWS EKS Cluster:  
+     - Create a seperate installer instance (t2.medium or higher) or use your local machine to run this [bash script](https://github.com/Lily-G1/eks-setup). It contains instructions on how to easily automate the creation of an EKS cluster suitable for running this application.
+     - Go to eks-setup/eks-terraform/main.tf to change/update instance types, config.env values & node types where required
+     - Create a directory in same installer instance called 'rbac'  
+     - ```bash
+        mkdir rbac && cd rbac/
+        kubectl create ns dev        
+        touch sa.yaml role.yaml rb.yaml cr.yaml crb.yaml secret.yaml
+       ```
 
