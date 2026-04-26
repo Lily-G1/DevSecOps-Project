@@ -33,13 +33,13 @@ Clone this repository using the steps below and follow this comprehensive step-b
         kubectl create ns dev        
         touch sa.yaml role.yaml rb.yaml cr.yaml crb.yaml secret.yaml
        ```
-     - Go to this rbac [file](https://github.com/Lily-G1/DevSecOps-Project/blob/dev-k8-deploy/RBAC/rbac.md) and copy the content of the following files into the corresponding files created above:
-       - service_account and paste into sa.yaml (change namespace to 'dev')  
-       - role and paste into role.yaml (change namespace to 'dev')  
-       - role_binding and paste into rb.yaml (change namespace to 'dev')  
-       - cluster_role and paste into cr.yaml (change namespace to 'dev')  
-       - cluster_role_binding and paste into crb.yaml (change namespace to 'dev')
-       - Click on 'create token' from same [file](https://github.com/Lily-G1/DevSecOps-Project/blob/dev-k8-deploy/RBAC/rbac.md) & copy content of 'secret/serviceaccount/mysecretname.yaml'. Paste into secret.yaml and change value of 'kubernetes.io/service-account.name: myserviceaccount' to 'jenkins'. Save.
+     - Go to this rbac [file](https://github.com/Lily-G1/DevSecOps-Project/blob/dev-k8-deploy/RBAC/rbac.md) and copy the contents of the following files into the corresponding files created above:
+       - from 'ServiceAccount' and paste into sa.yaml (change namespace to 'dev')  
+       - from 'Role' and paste into role.yaml (change namespace to 'dev')  
+       - from 'RoleBinding' and paste into rb.yaml (change namespace to 'dev')  
+       - from 'ClusterRole' and paste into cr.yaml (change namespace to 'dev')  
+       - from 'ClusterRoleBinding' and paste into crb.yaml (change namespace to 'dev')
+       - Click on 'Create Token' from same [file](https://github.com/Lily-G1/DevSecOps-Project/blob/dev-k8-deploy/RBAC/rbac.md) & copy content of 'secret/serviceaccount/mysecretname.yaml'. Paste into secret.yaml and change value of 'kubernetes.io/service-account.name: myserviceaccount' to 'jenkins'. Save.
        - ```bash
          kubectl apply -f sa.yaml role.yaml rb.yaml cr.yaml crb.yaml
          kubectl apply -f secret.yaml -n dev
