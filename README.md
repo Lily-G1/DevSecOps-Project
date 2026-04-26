@@ -46,4 +46,4 @@ Clone this repository using the steps below and follow this comprehensive step-b
          kubectl describe secret mysecretname -n dev  (to display secret token)
          ```
        - Copy secret token above. Go jenkins console -> credentials -> global -> add -> secret text -> paste token -> ID + descr = 'k8-token'. Create.  
-       - Go to AWS console -> EKS cluster to copy cluster's ARN/url. Go to 'k8-deploy' stage and update the value of 'serverURL' with this value.  
+       - Go to AWS console -> EKS cluster to copy cluster's ARN/url. Go to 'k8-deploy' snd 'verify-K8-deploy' stages and update the value of 'serverURL' with this url.  
