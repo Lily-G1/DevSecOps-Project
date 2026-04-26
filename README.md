@@ -26,11 +26,19 @@ Clone this repository using the steps below and follow this comprehensive step-b
    - Jenkins plugins to install: Stageview, sonarqube scanner,  nodejs, docker pipeline, kubernetes, kubernetes credentials, kubernetes CLI  
    - Set up AWS EKS Cluster:  
      - Create a seperate installer instance (t2.medium or higher) or use your local machine to run this [bash script](https://github.com/Lily-G1/eks-setup). It contains instructions on how to easily automate the creation of an EKS cluster suitable for running this application.
-     - Go to eks-setup/eks-terraform/main.tf to change/update instance types, config.env values & node types where required
-     - Create a directory in same installer instance called 'rbac'  
+     - Go to eks-setup/eks-terraform/main.tf to change or update instance types, config.env values & node types as required
+     - Create a directory in same installer instance called 'rbac' and create rbac files:   
      - ```bash
         mkdir rbac && cd rbac/
         kubectl create ns dev        
         touch sa.yaml role.yaml rb.yaml cr.yaml crb.yaml secret.yaml
        ```
-
+     - Go to this [repository]() and copy the content of the following files into the corresponding files created above:
+       - service_account and paste into sa.yaml (change namespace to 'dev')  
+       - role and paste into role.yaml (change namespace to 'dev')  
+       - role_binding and paste into rb.yaml (change namespace to 'dev')  
+       - cluster_role and paste into cr.yaml (change namespace to 'dev')  
+       - cluster_role_binding and paste into crb.yaml (change namespace to 'dev')  
+       - ```bash
+         kubectl apply -f sa.yaml role.yaml rb.yaml cr.yaml crb.yaml
+         ```
