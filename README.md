@@ -38,7 +38,12 @@ Clone this repository using the steps below and follow this comprehensive step-b
        - role and paste into role.yaml (change namespace to 'dev')  
        - role_binding and paste into rb.yaml (change namespace to 'dev')  
        - cluster_role and paste into cr.yaml (change namespace to 'dev')  
-       - cluster_role_binding and paste into crb.yaml (change namespace to 'dev')  
+       - cluster_role_binding and paste into crb.yaml (change namespace to 'dev')
+       - Click on 'create token' in same repository & copy content of '.../mysecretname.yaml'. Paste into secret.yaml and change value of 'kubernetes.io/service-account.name: myserviceaccount' to 'jenkins'. Save.
        - ```bash
          kubectl apply -f sa.yaml role.yaml rb.yaml cr.yaml crb.yaml
+         kubectl apply -f secret.yaml -n dev
+         kubectl describe secret mysecretname -n dev  (to display secret token)
          ```
+       - Copy secret token above. Go jenkins console -> credentials -> global -> add -> secret text -> paste token -> ID + descr = 'k8-token'. Create.  
+       - Go to AWS console -> EKS cluster to copy cluster's ARN and paste in Jenkinsfile. 
