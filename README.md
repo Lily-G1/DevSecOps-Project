@@ -24,30 +24,31 @@ Clone this repository using the steps below and follow this comprehensive step-b
 7. set up the required Jenkins & Sonarqube infrastructure:
    - Follow these detailed [instructions](https://medium.com/@liliangaladima_/devsecops-project-deployment-a-jenkins-sonarqube-pipeline-f1654d9ee379?postPublishedType=repub) to set up the required  for deployment. We will be deploying with kubernetes rather than docker-compose in this environment.  
    - Jenkins plugins to install: Stageview, sonarqube scanner,  nodejs, docker pipeline, kubernetes, kubernetes credentials, kubernetes CLI  
-   - Set up AWS EKS Cluster:  
-     - Create a seperate installer instance (t2.medium or higher) or use your local machine to run this [bash script](https://github.com/Lily-G1/eks-setup). It contains instructions on how to easily automate the creation of an EKS cluster suitable for running this application.
-     - Go to eks-setup/eks-terraform/main.tf to change or update instance types, config.env values & node types as required
-     - Create a directory in same installer instance called 'rbac' and create rbac files:   
+8. Set up AWS EKS Cluster:  
+   - Create a seperate installer instance (t2.medium or higher) or use your local machine to run this [bash script](https://github.com/Lily-G1/eks-setup). It contains instructions on how to easily automate the creation of an EKS cluster suitable for running this application.
+   - Go to eks-setup/eks-terraform/main.tf to change or update instance types, config.env values & node types as required
+   - Create a directory in same installer instance called 'rbac' and create rbac files:   
+   - ```bash
+      mkdir rbac && cd rbac/
+      kubectl create ns dev        
+      touch sa.yaml role.yaml rb.yaml cr.yaml crb.yaml secret.yaml
+     ```
+   - Go to this rbac [file](https://github.com/Lily-G1/DevSecOps-Project/blob/main/RBAC/rbac.md) and copy the contents of the following files into the corresponding files created above:
+     - from 'ServiceAccount' and paste into sa.yaml (change namespace to 'dev')  
+     - from 'Role' and paste into role.yaml (change namespace to 'dev')  
+     - from 'RoleBinding' and paste into rb.yaml (change namespace to 'dev')  
+     - from 'ClusterRole' and paste into cr.yaml (change namespace to 'dev')  
+     - from 'ClusterRoleBinding' and paste into crb.yaml (change namespace to 'dev')
+     - Click on 'Create Token' from same [file](https://github.com/Lily-G1/DevSecOps-Project/blob/main/RBAC/rbac.md) & copy content of 'secret/serviceaccount/mysecretname.yaml'. Paste into secret.yaml and change value of 'kubernetes.io/service-account.name: myserviceaccount' to 'jenkins'. Save.
      - ```bash
-        mkdir rbac && cd rbac/
-        kubectl create ns dev        
-        touch sa.yaml role.yaml rb.yaml cr.yaml crb.yaml secret.yaml
+       kubectl apply -f sa.yaml role.yaml rb.yaml cr.yaml crb.yaml
+       kubectl apply -f secret.yaml -n dev
+       kubectl describe secret mysecretname -n dev  (to display secret token)
        ```
-     - Go to this rbac [file](https://github.com/Lily-G1/DevSecOps-Project/blob/main/RBAC/rbac.md) and copy the contents of the following files into the corresponding files created above:
-       - from 'ServiceAccount' and paste into sa.yaml (change namespace to 'dev')  
-       - from 'Role' and paste into role.yaml (change namespace to 'dev')  
-       - from 'RoleBinding' and paste into rb.yaml (change namespace to 'dev')  
-       - from 'ClusterRole' and paste into cr.yaml (change namespace to 'dev')  
-       - from 'ClusterRoleBinding' and paste into crb.yaml (change namespace to 'dev')
-       - Click on 'Create Token' from same [file](https://github.com/Lily-G1/DevSecOps-Project/blob/main/RBAC/rbac.md) & copy content of 'secret/serviceaccount/mysecretname.yaml'. Paste into secret.yaml and change value of 'kubernetes.io/service-account.name: myserviceaccount' to 'jenkins'. Save.
-       - ```bash
-         kubectl apply -f sa.yaml role.yaml rb.yaml cr.yaml crb.yaml
-         kubectl apply -f secret.yaml -n dev
-         kubectl describe secret mysecretname -n dev  (to display secret token)
-         ```
-       - Copy secret token above. Go jenkins console -> credentials -> global -> add -> secret text -> paste token -> ID + descr = 'k8-token'. Create.  
-       - Go to AWS console -> EKS cluster to copy cluster's ARN/url. Go to 'deploy-to-PROD' and 'verify-deployment-to-PROD' stages and update the value of 'serverURL' with this url.
-      - Update the ingress.yaml file with your active domain name.  
-      - Build your pipeline. The application will be accessible via the created loadbalancer’s IP.  
-      - DNS must be configured in your domain registrar pointing the A-record to the loadbalancer’s external IP. After propagation, the application will be available on your domain    
-
+    - Copy secret token above. Go jenkins console -> credentials -> global -> add -> secret text -> paste token -> ID + descr = 'k8-token'. Create.  
+    - Go to AWS console -> EKS cluster to copy cluster's ARN/url. Go to 'deploy-to-PROD' and 'verify-deployment-to-PROD' stages and update the value of 'serverURL' with this url.
+    - Update the ingress.yaml file with your active domain name.  
+    - Build your pipeline. The application will be accessible via the created loadbalancer’s IP.  
+    - DNS must be configured in your domain registrar pointing the A-record to the loadbalancer’s external IP. After propagation, the application will be available on your domain
+9. Configure monitoring with Prometheus & Grafana:
+    - 
