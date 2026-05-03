@@ -50,5 +50,4 @@ Clone this repository using the steps below and follow this comprehensive step-b
     - Update the ingress.yaml file with your active domain name.  
     - Build your pipeline. The application will be accessible via the created loadbalancer’s IP.  
     - DNS must be configured in your domain registrar pointing the A-record to the loadbalancer’s external IP. After propagation, the application will be available on your domain
-9. Configure monitoring with Prometheus & Grafana:  
-    - 
+<!--  9. Configure monitoring with Prometheus & Grafana: -->
